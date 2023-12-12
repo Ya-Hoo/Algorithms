@@ -1,3 +1,3 @@
 # Algorithms
 
-Random algorithms created by me
+Random algorithms created/learned by me
