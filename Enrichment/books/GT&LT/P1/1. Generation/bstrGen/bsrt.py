@@ -1,13 +1,20 @@
+"""
+Program to generate all binary numbers of length n
+
+The 
+"""
+
+
 import os
 
-directory = fr"{os.getcwd()}\\book\\bstrGen\\"
+directory = fr"{os.getcwd()}\\Enrichment\\book\\bstrGen\\"
 InputFile = "bstr.inp"
 OutputFile = "bstr.out"
 
 x = ""
 
 with open(directory+InputFile, 'r') as f:
-    n = i = int(f.readline())
+    n = int(f.readline())
     x = ["0"] * n
     
 with open(directory+OutputFile, 'w') as f:

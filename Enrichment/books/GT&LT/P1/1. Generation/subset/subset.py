@@ -1,6 +1,6 @@
 import os
 
-directory = fr"{os.getcwd()}\\book\\subset\\"
+directory = fr"{os.getcwd()}\\Enrichment\\book\\subset\\"
 InputFile = "subset.inp"
 OutputFile = "subset.out"
 
