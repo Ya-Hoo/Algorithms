@@ -92,9 +92,9 @@ Each cell is a binary integer: $0$ (dead) or $1$ (alive).
 * Consequently, when a cell is dead, we would change its binary value to $0$ then remove its coordinate from the ___livingCell___ list.  
 
 To count the number of neighbor alive, first, we initialise a variable to keep track of the number of living neighbors called ___alive___. Starting from the top-left neighbor, take its current state and the adjacent neighbor clockwise order, call them $b_1$ and $b_2$ respectively. Then, compute the following:  
-> $`c_1 = b_1 \land b_2`$  
-> $`c_2 = b_1 \oplus b_2`$  
-> $`d = (c_1 \ll 1) \lor c_2`$  
+> $c_1 = b_1 \land b_2$  
+> $c_2 = b_1 \oplus b_2$  
+> $d = (c_1 \ll 1) \lor c_2$  
 
 Add to ___alive___ the integer equivalent of $d$, then move on to the next neighbor clockwise. After a full rotation, ___alive___ should now equal to the total number of neighbor a cell has. The image below will illustrates this process.
 
@@ -149,7 +149,7 @@ for y in y_range:
     print(''.join('⬜' if [y,x] in livingCells else '⬛' for x in x_range))
 ```
 
-Yet this comes with a problem that the border may shrink at some point due to the decrease in area occupied by live cells, thus to prevent that from happening we keep track of the lowest and highest x and y coordinates the map has occupied before and only update the map when these values are exceeded.
+Yet, this comes with a problem that the border may shrink at some point due to the decrease in area occupied by live cells, thus to prevent that from happening we keep track of the lowest and highest x and y coordinates the map has occupied before and only update the map when these values are exceeded.
 
 ## Stats/progress tracker
 
@@ -159,7 +159,7 @@ In this evaluation, we made each version compute 10,000 generations of a specifi
 (not finished)
 | Pattern           | v1.1      | v2.0      | v2.1      |
 |-------------------|----------:|----------:|----------:|
-| Glider            |     |     | 0.536    |
+| Glider            |     |     |     |
 | Gosper Glider Gun |     |     |     |
 | Brain             |     |     |     |
 | LWSS              |     |     |     |
