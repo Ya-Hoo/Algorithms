@@ -1,8 +1,11 @@
-#include <iostream>
+#include <bits/stdc++.h>
+#include <math.h>
 
 using namespace std;
 
-long long n, a[1000000], b[1000000];
+long long n, a[81], b[81];
+int counter;
+bool c[81];
 
 long long sumDigit(long long x)
 {
@@ -16,43 +19,43 @@ long long sumDigit(long long x)
 
 void input()
 {
-    long long i;
+    long long i, inp;
     cin >> n;
+    counter = 0;
     for (i=0; i<n; i++) {
-        cin >> a[i];
-        b[i] = sumDigit(a[i]);
+        cin >> inp;
+        int sumD = sumDigit(inp);
+        if (c[sumD] == 0) {
+            a[counter] = inp;
+            b[counter] = sumD;
+            c[sumD] = 1;
+            counter++;
+            if (counter==81) break;
+        }
     }
-}
-
-int lengthDigit(long long x)
-{
-    int length=0;
-    while (x>0) {
-        length++;
-        x /= 10;
-    }
-    return length;
 }
 
 void output()
 {
-    long long i, j, minDiff, first, second, diff, password=1;
-    minDiff = 1000000000;
-    for (i=0; i<n-1; i++) {
-        first = a[i];
-        for (j=i+1; j<n; j++) {
-            second = a[j];
-            diff = abs(b[i]-b[j]);
-            if ((diff != 0) && (diff < minDiff)) {
-                password = first;
-                for (int k=0; k<lengthDigit(second); k++) password *= 10;
-                password += second;
+    long long firstNum, secondNum;
+    int minDiff, diff;
+    minDiff = 81;
+
+    for (int i=0; i<counter; i++) {
+        for (int j=i+1; j<counter; j++) {
+            diff = abs(b[i] - b[j]);
+            if (diff<minDiff) {
                 minDiff = diff;
+                firstNum = a[i];
+                secondNum = a[j];
             }
         }
+        if (minDiff==1) break;
     }
-    cout << password;
+    cout << firstNum << secondNum;
+
 }
+
 
 int main()
 {
