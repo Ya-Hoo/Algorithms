@@ -10,9 +10,9 @@ void input()
 {
     cin >> m >> n;
     for (int i=1; i<=m; i++) cin >> a[i];
-    for (int i=1; i<=n; i++) {
-        cin >> b[i][0];
-        b[i][1] = i;
+    for (int j=1; j<=n; j++) {
+        cin >> b[j][0];
+        b[j][1] = j;
     }
 }
 
@@ -50,37 +50,42 @@ void quicksort(long long l, long long r)
 
 long long bisearch(long long x)
 {
-    long long closest, l, r, closestIndex;
-    closest = b[1][0];
-    closestIndex = 1;
+    long long l, r, mid, value;
+    long long closest, closestIndex;
     l = 1;
     r = n;
-    while (l < r) {
-        long long mid = (r+l)/2;
-        if (abs(b[mid][0]-x) < abs(closest-x)) {
-            closest = b[mid][0];
+    closest = b[1][0];
+    closestIndex = 1;
+
+    while (l <= r) {
+        mid = (r+l)/2;
+        value = b[mid][0];
+
+        if (abs(value - x) < abs(closest - x)) {
+            closest = value;
             closestIndex = mid;
         }
 
-        if (b[mid][0]==x) return mid;
-        else if (x>b[mid][0]) l = mid + 1;
-        else r = mid - 1;
+        if (value==x) return mid;
+        else if (x>value) l = mid + 1;
+        else if (x<value) r = mid - 1;
     }
     return closestIndex;
 }
 
-void output()
-{
-    long long minsum = 10000000000;
-    long long amin, bmin, sum;
+void output(){
+    long long amin, bmin, sum, minsum;
+    minsum = 10000000000;
     quicksort(1, n);
+
     for (int i=1; i<=m; i++) {
-        long long index = bisearch(-a[i]);
+        int index = bisearch(-a[i]);
         sum = abs(a[i] + b[index][0]);
         if (sum < minsum) {
             minsum = sum;
             amin = i;
             bmin = b[index][1];
+            if (sum==0) break;
         }
     }
     cout << amin << " " << bmin;
